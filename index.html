@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studies, Professions & Appointments — Unit 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sun-50:#fff7f0;
+    --sun-100:#ffead6;
+    --sun-200:#ffcfa0;
+    --sun-400:#ff9d47;
+    --sun-500:#f2761c;
+    --sun-600:#d35a0a;
+    --ink-900:#3a2a1c;
+    --ink-700:#5c4632;
+    --ink-500:#8a7157;
+    --paper:#ffffff;
+    --line:#f6e0c8;
+    --good:#1b9e6b;
+    --good-bg:#e7f8f0;
+    --bad:#d1495b;
+    --bad-bg:#fdecee;
+    --shadow: 0 10px 30px -14px rgba(180,80,10,0.28);
+    --radius-card: 18px;
+    --radius-pill: 999px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:
+      radial-gradient(1100px 480px at 12% -10%, var(--sun-100), transparent 60%),
+      radial-gradient(900px 420px at 100% 0%, var(--sun-50), transparent 55%),
+      var(--sun-50);
+    color:var(--ink-900);
+    min-height:100vh;
+    line-height:1.5;
+  }
+  h1,h2,h3,h4{font-family:'Sora',system-ui,sans-serif;margin:0;}
+  p{margin:0 0 10px 0;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px 70px;}
+
+  .hero{
+    background:linear-gradient(135deg, var(--sun-600), var(--sun-400) 65%, #ffce8a);
+    color:#fff;
+    padding:38px 20px 84px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; right:-60px; bottom:-90px;
+    width:280px; height:280px; border-radius:50%;
+    background:rgba(255,255,255,0.10);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; left:60%; top:-70px;
+    width:170px; height:170px; border-radius:50%;
+    background:rgba(255,255,255,0.08);
+  }
+  .hero-inner{max-width:960px;margin:0 auto;position:relative;z-index:2;}
+  .kicker{
+    font-size:14px;font-weight:600;letter-spacing:.02em;
+    color:rgba(255,255,255,0.92);
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,0.16);
+    padding:6px 14px;border-radius:var(--radius-pill);
+    margin-bottom:16px;
+  }
+  .hero h1{font-size:clamp(28px,4.2vw,40px);font-weight:800;max-width:640px;line-height:1.12;}
+  .hero p.lead{font-size:16.5px;max-width:560px;margin-top:12px;color:rgba(255,255,255,0.94);}
+
+  .navcard{
+    max-width:960px;margin:-46px auto 30px;
+    background:var(--paper);
+    border-radius:20px;
+    box-shadow:var(--shadow);
+    padding:14px;
+    position:relative;z-index:5;
+  }
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;}
+  .tab-btn{
+    border:none;background:var(--sun-50);
+    color:var(--ink-700);
+    font-family:'Inter',sans-serif;font-weight:600;font-size:14px;
+    padding:11px 18px;border-radius:var(--radius-pill);
+    cursor:pointer;transition:all .18s ease;
+    display:flex;align-items:center;gap:7px;
+  }
+  .tab-btn:hover{background:var(--sun-100);}
+  .tab-btn.active{
+    background:linear-gradient(135deg,var(--sun-500),var(--sun-600));
+    color:#fff;box-shadow:0 6px 16px -6px rgba(211,90,10,0.45);
+  }
+  .tab-btn .num{
+    width:20px;height:20px;border-radius:50%;
+    background:rgba(255,255,255,0.35);
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:11.5px;
+  }
+  .tab-btn:not(.active) .num{background:var(--sun-200);color:var(--sun-600);}
+
+  .toolbar{
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    border-top:1px solid var(--line);margin-top:12px;padding-top:12px;
+  }
+  .save-status{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-500);}
+  .save-status .led{width:8px;height:8px;border-radius:50%;background:var(--good);flex:none;}
+  .toolbar .tools{display:flex;gap:8px;flex-wrap:wrap;}
+  .tool-btn{
+    border:1.5px solid var(--sun-200);background:#fff;color:var(--sun-600);
+    font-family:'Inter',sans-serif;font-weight:600;font-size:12.5px;
+    padding:8px 14px;border-radius:var(--radius-pill);cursor:pointer;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .tool-btn:hover{background:var(--sun-50);}
+  .tool-btn.danger{color:var(--bad);border-color:#f4c6cc;}
+  .name-field{display:flex;align-items:center;gap:8px;}
+  .name-field label{font-size:12.5px;color:var(--ink-500);font-weight:600;white-space:nowrap;}
+  .name-field input{
+    border:1.5px solid var(--sun-200);border-radius:var(--radius-pill);
+    padding:7px 14px;font-size:13px;font-family:'Inter',sans-serif;
+    color:var(--ink-900);background:#fbfdff;width:170px;
+  }
+  .name-field input:focus{outline:none;border-color:var(--sun-500);background:#fff;}
+  .writing-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+  @media print{
+    .navcard, footer.foot{display:none !important;}
+    .hero{padding:16px 0;background:none;color:var(--ink-900);}
+    .hero::after, .hero::before{display:none;}
+    .hero .kicker{background:var(--sun-100);color:var(--sun-600);}
+    body{background:#fff;}
+    .card{box-shadow:none;border:1px solid var(--line);}
+    .tool-btn, .btn, .btn-row{display:none !important;}
+  }
+
+  section.panel{display:none;animation:fade .25s ease;}
+  section.panel.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius-card);
+    padding:26px 26px;
+    margin-bottom:20px;
+    box-shadow:var(--shadow);
+  }
+  .card h2{font-size:22px;color:var(--ink-900);margin-bottom:6px;}
+  .card h3{font-size:16px;margin-top:22px;margin-bottom:6px;}
+  .card .sub{color:var(--ink-500);font-size:14.5px;margin-bottom:18px;}
+  .eyebrow{
+    font-size:12.5px;font-weight:600;color:var(--sun-600);
+    background:var(--sun-100);display:inline-block;
+    padding:4px 12px;border-radius:var(--radius-pill);
+    margin-bottom:10px;
+  }
+
+  .obj-list{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
+  .obj-list li{
+    display:flex;gap:10px;align-items:flex-start;
+    background:var(--sun-50);border-radius:12px;padding:12px 14px;
+    font-size:14.5px;color:var(--ink-700);
+  }
+  .obj-list li .dot{
+    flex:none;width:22px;height:22px;border-radius:50%;
+    background:var(--sun-500);color:#fff;font-size:12px;
+    display:flex;align-items:center;justify-content:center;margin-top:1px;
+  }
+
+  label.q{display:block;font-weight:600;font-size:14.5px;color:var(--ink-900);margin:14px 0 6px;}
+  input[type=text], textarea, select{
+    width:100%;font-family:'Inter',sans-serif;font-size:14.5px;
+    border:1.5px solid var(--line);border-radius:10px;
+    padding:10px 12px;color:var(--ink-900);background:#fbfdff;
+  }
+  input[type=text]:focus, textarea:focus, select:focus{
+    outline:none;border-color:var(--sun-500);background:#fff;
+  }
+  textarea{resize:vertical;min-height:70px;}
+  .field-ok{border-color:var(--good) !important;background:var(--good-bg) !important;}
+  .field-bad{border-color:var(--bad) !important;background:var(--bad-bg) !important;}
+
+  .btn{
+    border:none;cursor:pointer;font-family:'Inter',sans-serif;font-weight:700;
+    font-size:14px;padding:11px 20px;border-radius:var(--radius-pill);
+    background:linear-gradient(135deg,var(--sun-500),var(--sun-600));color:#fff;
+    box-shadow:0 8px 18px -8px rgba(211,90,10,0.5);
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn.ghost{
+    background:#fff;color:var(--sun-600);border:1.5px solid var(--sun-200);box-shadow:none;
+  }
+  .btn-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .feedback{
+    margin-top:12px;font-size:14px;font-weight:600;padding:10px 14px;
+    border-radius:10px;display:none;
+  }
+  .feedback.show{display:block;}
+  .feedback.ok{background:var(--good-bg);color:var(--good);}
+  .feedback.warn{background:#fff6e0;color:#9a6b00;}
+
+  .reveal-box{
+    display:none;margin-top:12px;background:var(--sun-50);
+    border-left:3px solid var(--sun-500);border-radius:10px;
+    padding:12px 14px;font-size:14px;color:var(--ink-700);
+  }
+  .reveal-box.show{display:block;}
+
+  table.fill-table{width:100%;border-collapse:collapse;margin-top:6px;}
+  table.fill-table th{
+    text-align:left;font-family:'Sora',sans-serif;font-size:13.5px;
+    color:var(--sun-600);padding:8px 10px;border-bottom:2px solid var(--sun-200);
+  }
+  table.fill-table td{padding:8px 10px;vertical-align:top;border-bottom:1px solid var(--line);}
+  table.fill-table td.row-label{font-weight:600;color:var(--ink-700);font-size:14px;white-space:nowrap;}
+
+  .be-table{width:100%;border-collapse:separate;border-spacing:0;margin-top:10px;border-radius:12px;overflow:hidden;border:1px solid var(--line);}
+  .be-table th{background:var(--sun-500);color:#fff;font-family:'Sora',sans-serif;font-size:13.5px;padding:10px 12px;text-align:left;}
+  .be-table td{padding:10px 12px;font-size:14px;border-top:1px solid var(--line);background:#fff;}
+  .be-table tr:nth-child(even) td{background:var(--sun-50);}
+
+  .quote-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;}
+  .quote-card{
+    flex:1 1 160px;background:var(--sun-50);border-radius:12px;padding:14px 16px;
+    font-family:'Sora',sans-serif;font-size:14px;color:var(--ink-900);font-weight:600;
+  }
+  .quote-card span{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:12.5px;color:var(--sun-600);margin-bottom:4px;}
+
+  .greet-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px;}
+  .greet-card{
+    background:var(--sun-50);border:1px solid var(--line);border-radius:16px;
+    padding:16px 18px;
+  }
+  .greet-card .gc-head{display:flex;align-items:center;gap:9px;margin-bottom:10px;}
+  .greet-card .gc-ic{
+    width:32px;height:32px;border-radius:10px;background:var(--sun-500);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:15px;flex:none;
+  }
+  .greet-card h4{font-size:14.5px;color:var(--ink-900);}
+  .greet-card ul{list-style:none;margin:0;padding:0;display:grid;gap:7px;}
+  .greet-card li{
+    font-size:13.5px;color:var(--ink-700);background:#fff;border:1px solid var(--line);
+    border-radius:9px;padding:7px 10px;
+  }
+  .greet-card li b{color:var(--ink-900);}
+
+  .scene-block{
+    background:var(--sun-50);border-radius:14px;padding:16px 18px;margin-bottom:14px;
+  }
+
+  .ex-block{border-top:1px dashed var(--line);padding-top:16px;margin-top:16px;}
+  .ex-block:first-of-type{border-top:none;margin-top:0;padding-top:0;}
+  .ex-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:24px;height:24px;border-radius:7px;background:var(--ink-900);color:#fff;
+    font-size:12.5px;font-weight:700;margin-right:8px;
+  }
+  .item-row{display:flex;gap:10px;align-items:center;margin:8px 0;}
+  .item-row .txt{font-size:14.5px;color:var(--ink-900);flex:1;}
+  .item-row input[type=text]{max-width:220px;}
+  .item-row select{max-width:220px;}
+
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-top:6px;}
+  .info-grid label{font-size:12.5px;color:var(--sun-600);font-weight:700;margin:0 0 4px;display:block;}
+
+  /* collapsible */
+  details.collapsible summary{
+    cursor:pointer;list-style:none;font-family:'Sora',sans-serif;font-weight:700;
+    font-size:15.5px;color:var(--ink-900);padding:4px 0;
+    display:flex;align-items:center;gap:8px;
+  }
+  details.collapsible summary::-webkit-details-marker{display:none;}
+  details.collapsible summary::after{
+    content:"▾";margin-left:auto;color:var(--sun-500);font-size:14px;transition:transform .15s ease;
+  }
+  details.collapsible[open] summary::after{transform:rotate(180deg);}
+  details.collapsible .collapsible-body{margin-top:14px;}
+
+  /* ID card */
+  .id-card{
+    background:linear-gradient(135deg,var(--ink-900),var(--ink-700));
+    border-radius:16px;padding:20px 22px;color:#fff;margin-bottom:18px;
+    display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;
+  }
+  .id-card .id-photo{
+    width:64px;height:64px;border-radius:12px;background:rgba(255,255,255,0.15);
+    display:flex;align-items:center;justify-content:center;font-size:28px;
+  }
+  .id-card .id-title{font-family:'Sora',sans-serif;font-weight:700;font-size:13px;color:var(--sun-200);letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px;}
+  .id-fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px 16px;font-size:13.5px;}
+  .id-fields div b{display:block;font-size:11px;color:rgba(255,255,255,0.6);font-weight:600;text-transform:uppercase;letter-spacing:.03em;}
+
+  .steps{counter-reset:step;list-style:none;padding:0;margin:0;}
+  .steps li{
+    counter-increment:step;position:relative;padding:14px 14px 14px 52px;
+    background:var(--sun-50);border-radius:14px;margin-bottom:10px;
+  }
+  .steps li::before{
+    content:counter(step);position:absolute;left:14px;top:14px;
+    width:26px;height:26px;border-radius:50%;background:var(--sun-500);color:#fff;
+    font-family:'Sora',sans-serif;font-weight:700;font-size:13px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .steps li h4{font-size:15px;margin-bottom:3px;color:var(--ink-900);}
+  .steps li p{font-size:14px;color:var(--ink-700);margin:0;}
+  .prompt-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .chip{
+    background:#fff;border:1.5px solid var(--sun-200);color:var(--sun-600);
+    font-size:13.5px;font-weight:600;padding:8px 14px;border-radius:var(--radius-pill);
+  }
+
+  .starters{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:12px 0 4px;}
+  .starter{
+    background:var(--sun-50);border-radius:10px;padding:8px 12px;font-size:13.5px;
+    color:var(--ink-700);font-family:'Sora',sans-serif;font-weight:600;
+  }
+  .word-count{font-size:13px;color:var(--ink-500);margin-top:8px;}
+  .teacher-note{
+    margin-top:22px;border:1.5px dashed var(--sun-200);border-radius:14px;
+    padding:14px 16px;background:var(--sun-50);
+  }
+  .teacher-note .eyebrow{margin-bottom:6px;}
+  .teacher-note p{font-size:13.5px;color:var(--ink-700);margin:0;}
+  .self-check{list-style:none;padding:0;margin:10px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;}
+  .self-check li{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink-700);}
+  .self-check input{accent-color:var(--sun-500);}
+
+  footer.foot{text-align:center;color:var(--ink-500);font-size:12.5px;margin-top:20px;}
+
+  @media(max-width:640px){
+    .hero{padding:30px 16px 96px;}
+    .card{padding:20px 18px;}
+    .item-row{flex-direction:column;align-items:stretch;}
+    .item-row input[type=text], .item-row select{max-width:none;}
+    .id-card{grid-template-columns:1fr;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="kicker">🎓 Unit 2 · English A1</span>
+    <h1>Studies, Professions & Appointments</h1>
+    <p class="lead">Talk about your daily routine, describe your studies and career, and read personal documents — all in the Simple Present.</p>
+  </div>
+</div>
+
+<div class="navcard">
+  <div class="tabs" id="tabNav">
+    <button class="tab-btn active" data-panel="p-warmup"><span class="num">1</span> Warm-up</button>
+    <button class="tab-btn" data-panel="p-present"><span class="num">2</span> Simple Present &amp; Frequency</button>
+    <button class="tab-btn" data-panel="p-routine"><span class="num">3</span> Daily Routine</button>
+    <button class="tab-btn" data-panel="p-careers"><span class="num">4</span> Careers &amp; Listening</button>
+    <button class="tab-btn" data-panel="p-ids"><span class="num">5</span> IDs &amp; Forms</button>
+  </div>
+  <div class="toolbar">
+    <div class="name-field">
+      <label for="studentName">Your name</label>
+      <input type="text" id="studentName" data-save placeholder="e.g. Ana Pérez" oninput="saveAnswers()">
+    </div>
+    <div class="save-status"><span class="led" id="saveLed"></span><span id="saveStatusText">Your answers are saved automatically in this browser.</span></div>
+    <div class="tools">
+      <button class="tool-btn" onclick="downloadAnswers()">⬇ Download my answers</button>
+      <button class="tool-btn" onclick="downloadGuide()">⬇ Download this guide</button>
+      <button class="tool-btn" onclick="printGuide()">🖨 Print / Save as PDF</button>
+      <button class="tool-btn danger" onclick="resetAnswers()">🗑 Reset my answers</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 1. WARM-UP -->
+  <section class="panel active" id="p-warmup">
+    <div class="card">
+      <span class="eyebrow">Warm-up</span>
+      <h2>Order your day</h2>
+      <p class="sub">Look at these daily activities. Number them in the order a typical person usually does them (1 = first thing in the day, 8 = last thing at night).</p>
+
+      <div class="ex-block">
+        <div class="item-row"><div class="txt">📚 study / do homework</div><select id="wu1" data-save class="numselect"></select></div>
+        <div class="item-row"><div class="txt">🛌 get up</div><select id="wu2" data-save class="numselect"></select></div>
+        <div class="item-row"><div class="txt">🍽️ have lunch</div><select id="wu3" data-save class="numselect"></select></div>
+        <div class="item-row"><div class="txt">😴 go to bed</div><select id="wu4" data-save class="numselect"></select></div>
+        <div class="item-row"><div class="txt">🚿 take a shower</div><select id="wu5" data-save class="numselect"></select></div>
+        <div class="item-row"><div class="txt">🎒 go to class / go to work</div><select id="wu6" data-save class="numselect"></select></div>
+        <div class="item-row"><div class="txt">🍳 have breakfast</div><select id="wu7" data-save class="numselect"></select></div>
+        <div class="item-row"><div class="txt">🍝 have dinner</div><select id="wu8" data-save class="numselect"></select></div>
+        <div class="btn-row"><button class="btn" onclick="checkWarmup()">Check my order</button></div>
+        <div class="feedback ok" id="fbwu"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. SIMPLE PRESENT -->
+  <section class="panel" id="p-present">
+    <div class="card">
+      <span class="eyebrow">Grammar focus</span>
+      <h2>Simple Present with do / does</h2>
+      <p class="sub">Use he/she/it + verb+s in the affirmative. Everywhere else, use do or does as auxiliaries.</p>
+      <table class="be-table">
+        <tr><th>Affirmative</th><th>Negative</th><th>Question</th></tr>
+        <tr><td>I / You / We / They study</td><td>I / You / We / They don't study</td><td>Do I / you / we / they study...?</td></tr>
+        <tr><td>He / She / It studies</td><td>He / She / It doesn't study</td><td>Does he / she / it study...?</td></tr>
+      </table>
+      <table class="be-table" style="margin-top:14px;">
+        <tr><th>Question</th><th>Short answer (yes)</th><th>Short answer (no)</th></tr>
+        <tr><td>Do you work?</td><td>Yes, I do.</td><td>No, I don't.</td></tr>
+        <tr><td>Does she study English?</td><td>Yes, she does.</td><td>No, she doesn't.</td></tr>
+      </table>
+
+      <h3>Adverbs of frequency</h3>
+      <p class="sub">Adverbs of frequency tell us <strong>how often</strong> something happens.</p>
+      <table class="be-table">
+        <tr><th>Adverb</th><th>How often (%)</th></tr>
+        <tr><td>always</td><td>100%</td></tr>
+        <tr><td>usually</td><td>~90%</td></tr>
+        <tr><td>often</td><td>~70%</td></tr>
+        <tr><td>sometimes</td><td>~50%</td></tr>
+        <tr><td>rarely</td><td>~10%</td></tr>
+        <tr><td>never</td><td>0%</td></tr>
+      </table>
+
+      <h3>Where does the adverb go?</h3>
+      <div class="quote-row">
+        <div class="quote-card"><span>1. Before the main verb</span>She always studies at night.</div>
+        <div class="quote-card"><span>2. After the verb to be</span>She is often tired.</div>
+        <div class="quote-card"><span>3. Sometimes/usually can also start or end a sentence</span>Sometimes I study at night. / I study at night sometimes.</div>
+        <div class="quote-card"><span>4. Longer expressions go at the end</span>I check my email every day.</div>
+      </div>
+
+      <h3>Other frequency expressions</h3>
+      <p class="sub">Not every frequency word is a single adverb — these expressions go at the end of the sentence.</p>
+      <div class="prompt-chips">
+        <span class="chip">every day</span>
+        <span class="chip">every morning</span>
+        <span class="chip">once a week</span>
+        <span class="chip">twice a month</span>
+        <span class="chip">on Mondays</span>
+        <span class="chip">on weekends</span>
+        <span class="chip">from Monday to Friday</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Practice</h2>
+
+      <div class="ex-block">
+        <p><span class="ex-num">1</span><strong>Complete</strong> with do, does, don't or doesn't.</p>
+        <div class="item-row"><div class="txt">She ____ work on Saturdays.</div><input type="text" id="sp1" data-save></div>
+        <div class="item-row"><div class="txt">____ you study in the mornings?</div><input type="text" id="sp2" data-save></div>
+        <div class="item-row"><div class="txt">They ____ have classes on Fridays.</div><input type="text" id="sp3" data-save></div>
+        <div class="item-row"><div class="txt">____ he attend the meetings?</div><input type="text" id="sp4" data-save></div>
+        <div class="btn-row"><button class="btn" onclick="checkPresent1()">Check</button></div>
+        <div class="feedback ok" id="fbsp1"></div>
+      </div>
+
+      <div class="ex-block">
+        <p><span class="ex-num">2</span><strong>Order the words</strong> — remember where the adverb of frequency goes.</p>
+        <div class="item-row"><div class="txt">library / usually / the / I / study / in</div><input type="text" id="sp5" data-save></div>
+        <div class="item-row"><div class="txt">busy / always / is / she</div><input type="text" id="sp6" data-save></div>
+        <div class="item-row"><div class="txt">emails / how / you / check / often / do / ?</div><input type="text" id="sp7" data-save></div>
+        <div class="item-row"><div class="txt">classes / never / on / have / Sundays / they</div><input type="text" id="sp8" data-save></div>
+        <div class="btn-row"><button class="btn" onclick="checkPresent2()">Check</button></div>
+        <div class="feedback ok" id="fbsp2"></div>
+      </div>
+
+      <div class="ex-block">
+        <p><span class="ex-num">3</span><strong>Choose</strong> the correct adverb for each clue.</p>
+        <div class="item-row"><div class="txt">100% of the time: I ____ have breakfast.</div><select id="fr1" data-save class="freqselect"></select></div>
+        <div class="item-row"><div class="txt">0% of the time: I ____ skip class.</div><select id="fr2" data-save class="freqselect"></select></div>
+        <div class="item-row"><div class="txt">About half the time: I ____ study on weekends.</div><select id="fr3" data-save class="freqselect"></select></div>
+        <div class="item-row"><div class="txt">Most of the time: I ____ walk to university.</div><select id="fr4" data-save class="freqselect"></select></div>
+        <div class="btn-row"><button class="btn" onclick="checkFrequency()">Check</button></div>
+        <div class="feedback ok" id="fbfr"></div>
+      </div>
+
+      <div class="ex-block">
+        <p><span class="ex-num">4</span><strong>Rewrite</strong> the sentence, adding the adverb in the correct position.</p>
+        <div class="item-row"><div class="txt">I study in the library. (usually)</div><input type="text" id="rw1" data-save></div>
+        <div class="item-row"><div class="txt">She is tired. (often)</div><input type="text" id="rw2" data-save></div>
+        <div class="item-row"><div class="txt">They have classes on Saturdays. (never)</div><input type="text" id="rw3" data-save></div>
+        <div class="btn-row"><button class="btn" onclick="checkRewrite()">Check</button></div>
+        <div class="feedback ok" id="fbrw"></div>
+      </div>
+
+      <div class="ex-block">
+        <p><span class="ex-num">5</span><strong>Answer</strong> about yourself.</p>
+        <label class="q">How often do you attend classes?</label>
+        <input type="text" id="pp1" data-save>
+        <label class="q">Do you work and study at the same time?</label>
+        <input type="text" id="pp2" data-save>
+        <label class="q">What time do you usually get up?</label>
+        <input type="text" id="pp3" data-save>
+        <label class="q">How often do you check your phone?</label>
+        <input type="text" id="pp4" data-save>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DAILY ROUTINE -->
+  <section class="panel" id="p-routine">
+    <div class="card">
+      <span class="eyebrow">Vocabulary</span>
+      <h2>Daily routine</h2>
+      <p class="sub">These are the verbs and expressions we use to talk about a typical day.</p>
+      <table class="be-table">
+        <tr><th>Verb / expression</th><th>Meaning</th></tr>
+        <tr><td>wake up</td><td>to stop sleeping</td></tr>
+        <tr><td>get up</td><td>to get out of bed</td></tr>
+        <tr><td>take/have a shower</td><td>-</td></tr>
+        <tr><td>get dressed</td><td>to put on your clothes</td></tr>
+        <tr><td>have breakfast / lunch / dinner</td><td>-</td></tr>
+        <tr><td>go to class / go to work</td><td>-</td></tr>
+        <tr><td>have a break</td><td>a short rest between activities</td></tr>
+        <tr><td>study / do homework</td><td>-</td></tr>
+        <tr><td>go home / come back home</td><td>-</td></tr>
+        <tr><td>relax / watch TV</td><td>-</td></tr>
+        <tr><td>go to bed</td><td>to get into bed to sleep</td></tr>
+      </table>
+
+      <div class="ex-block" style="margin-top:14px;">
+        <p><span class="ex-num">1</span><strong>Complete</strong> the sentences with the correct expression.</p>
+        <div class="item-row"><div class="txt">I ____ at 6:30 every morning.</div><select id="rv1" data-save class="routineselect"></select></div>
+        <div class="item-row"><div class="txt">After class, I usually ____ at the library.</div><select id="rv2" data-save class="routineselect"></select></div>
+        <div class="item-row"><div class="txt">We ____ at around 9 p.m.</div><select id="rv3" data-save class="routineselect"></select></div>
+        <div class="item-row"><div class="txt">On weekends, I like to ____ and watch a movie.</div><select id="rv4" data-save class="routineselect"></select></div>
+        <div class="btn-row"><button class="btn" onclick="checkRoutineVocab()">Check</button></div>
+        <div class="feedback ok" id="fbrv"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="eyebrow">Reading</span>
+      <h2>My Daily Routine</h2>
+      <div class="scene-block">
+        <p style="font-size:14.5px;line-height:1.75;">
+          Hi! I'm Sofía, and I'm a Nursing student at UNLPam. Every day, I wake up at 6:30 and I have a quick breakfast. I usually walk to the faculty because it isn't far from my house. I have classes in the morning, and I have lunch with my classmates at noon. In the afternoon, I do my practical hours at the hospital. I don't work in the evenings — I usually study or relax at home. I sometimes go to the gym, but I never skip my Nursing classes. I go to bed around 11 p.m.
+        </p>
+      </div>
+      <div class="ex-block">
+        <p><span class="ex-num">1</span><strong>Answer.</strong></p>
+        <div class="item-row"><div class="txt">What time does Sofía wake up?</div><input type="text" id="rr1" data-save></div>
+        <div class="item-row"><div class="txt">Where does she usually have lunch?</div><input type="text" id="rr2" data-save></div>
+        <div class="item-row"><div class="txt">Does she work in the evenings?</div><input type="text" id="rr3" data-save></div>
+        <div class="item-row"><div class="txt">What does she never do?</div><input type="text" id="rr4" data-save></div>
+        <div class="btn-row"><button class="btn" onclick="checkRoutineReading()">Check</button></div>
+        <div class="feedback ok" id="fbrr"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CAREERS & LISTENING -->
+  <section class="panel" id="p-careers">
+    <div class="card">
+      <span class="eyebrow">Vocabulary</span>
+      <h2>Careers &amp; academic/work spaces</h2>
+      <p class="sub">Some of the degree programs at UNLPam and where people with these careers usually work.</p>
+      <table class="be-table">
+        <tr><th>Career</th><th>Usually works in / at...</th></tr>
+        <tr><td>Agricultural Engineer</td><td>the field, a farm</td></tr>
+        <tr><td>Public Accountant</td><td>an office</td></tr>
+        <tr><td>Lawyer</td><td>a courtroom, a law firm</td></tr>
+        <tr><td>Nurse</td><td>a hospital, a clinic</td></tr>
+        <tr><td>Veterinarian</td><td>a clinic, a farm</td></tr>
+        <tr><td>Systems Engineer</td><td>an office, remotely / from home</td></tr>
+        <tr><td>Teacher</td><td>a classroom, a school</td></tr>
+        <tr><td>Tourism Guide</td><td>a travel agency, outdoors</td></tr>
+        <tr><td>Biologist</td><td>a laboratory, the field</td></tr>
+        <tr><td>Translator</td><td>an office, remotely / from home</td></tr>
+      </table>
+      <div class="greet-grid">
+        <div class="greet-card"><div class="gc-head"><div class="gc-ic">🏫</div><h4>Academic spaces</h4></div><ul><li>classroom, lecture hall, library</li><li>laboratory, campus, department</li></ul></div>
+        <div class="greet-card"><div class="gc-head"><div class="gc-ic">💼</div><h4>Work spaces</h4></div><ul><li>office, workshop, clinic</li><li>courtroom, farm</li></ul></div>
+        <div class="greet-card"><div class="gc-head"><div class="gc-ic">💻</div><h4>Study/work modes</h4></div><ul><li>in-person / on campus</li><li>remote / online / from home</li></ul></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="eyebrow">🎧 Listening comprehension</span>
+      <h2>Three professionals talk about their jobs</h2>
+      <p class="sub">Press play to listen to each person, then answer the questions. You can play each one more than once.</p>
+      <div id="ttsWarning" class="feedback warn" style="display:none;">Your browser can't read text aloud automatically. Ask your teacher to read the script instead — use "Show script" below.</div>
+
+      <div class="ex-block">
+        <p><span class="ex-num">1</span><strong>Ana — Nurse</strong> <button class="tool-btn" onclick="playMonologue('ana')">▶ Play</button> <button class="tool-btn" onclick="stopSpeaking()">⏹ Stop</button></p>
+        <div class="item-row"><div class="txt">Where does Ana work?</div><input type="text" id="lc1" data-save></div>
+        <div class="item-row"><div class="txt">What does she usually do at work?</div><input type="text" id="lc2" data-save></div>
+        <div class="item-row"><div class="txt">Does she work at night?</div><input type="text" id="lc3" data-save></div>
+      </div>
+
+      <div class="ex-block">
+        <p><span class="ex-num">2</span><strong>Martín — Systems Engineer</strong> <button class="tool-btn" onclick="playMonologue('martin')">▶ Play</button> <button class="tool-btn" onclick="stopSpeaking()">⏹ Stop</button></p>
+        <div class="item-row"><div class="txt">Where does Martín work?</div><input type="text" id="lc4" data-save></div>
+        <div class="item-row"><div class="txt">How often does he go to the office?</div><input type="text" id="lc5" data-save></div>
+        <div class="item-row"><div class="txt">What does he usually do at work?</div><input type="text" id="lc6" data-save></div>
+      </div>
+
+      <div class="ex-block">
+        <p><span class="ex-num">3</span><strong>Valentina — Veterinarian</strong> <button class="tool-btn" onclick="playMonologue('valentina')">▶ Play</button> <button class="tool-btn" onclick="stopSpeaking()">⏹ Stop</button></p>
+        <div class="item-row"><div class="txt">Where does Valentina work?</div><input type="text" id="lc7" data-save></div>
+        <div class="item-row"><div class="txt">Does she work on Saturdays?</div><input type="text" id="lc8" data-save></div>
+        <div class="item-row"><div class="txt">What does she usually do at work?</div><input type="text" id="lc9" data-save></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn ghost" onclick="toggleReveal('careersAudioScript')">Show script (backup / teacher reference)</button>
+      </div>
+      <div class="reveal-box" id="careersAudioScript"></div>
+
+      <div class="ex-block">
+        <p><span class="ex-num">4</span><strong>Speaking.</strong> In pairs, ask and answer:</p>
+        <div class="prompt-chips">
+          <span class="chip">Where does a nurse usually work?</span>
+          <span class="chip">Do you know anyone who works remotely?</span>
+          <span class="chip">What career would you like to have?</span>
+          <span class="chip">Where does a vet usually work?</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. IDS & FORMS -->
+  <section class="panel" id="p-ids">
+    <div class="card">
+      <span class="eyebrow">Reading</span>
+      <h2>Interpreting a personal ID</h2>
+      <p class="sub">University staff often need to read a student ID or a national ID card. Look at this example.</p>
+
+      <div class="id-card">
+        <div class="id-photo">🪪</div>
+        <div>
+          <div class="id-title">UNLPam · Student ID</div>
+          <div class="id-fields">
+            <div><b>Name</b>Marcos</div>
+            <div><b>Surname</b>Ibáñez</div>
+            <div><b>Date of birth</b>03/11/2004</div>
+            <div><b>Nationality</b>Argentinian</div>
+            <div><b>ID number</b>41.882.106</div>
+            <div><b>Career</b>Systems Engineering</div>
+            <div><b>Faculty</b>College of Engineering</div>
+            <div><b>Enrolment year</b>2023</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ex-block">
+        <p><span class="ex-num">1</span><strong>Answer</strong> about Marcos's ID.</p>
+        <div class="item-row"><div class="txt">What's his surname?</div><input type="text" id="id1" data-save></div>
+        <div class="item-row"><div class="txt">When was he born?</div><input type="text" id="id2" data-save></div>
+        <div class="item-row"><div class="txt">What does he study?</div><input type="text" id="id3" data-save></div>
+        <div class="item-row"><div class="txt">What's his ID number?</div><input type="text" id="id4" data-save></div>
+        <div class="btn-row"><button class="btn" onclick="checkID()">Check</button></div>
+        <div class="feedback ok" id="fbid"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="eyebrow">Forms</span>
+      <h2>Course registration form</h2>
+      <div class="info-grid">
+        <div><label>Name</label><input type="text" id="rf1" data-save></div>
+        <div><label>Surname</label><input type="text" id="rf2" data-save></div>
+        <div><label>ID number</label><input type="text" id="rf3" data-save></div>
+        <div><label>Career</label><input type="text" id="rf4" data-save></div>
+        <div><label>Year</label><input type="text" id="rf5" data-save></div>
+        <div><label>Study mode</label><input type="text" id="rf6" data-save placeholder="in-person / remote"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">English A1 · Studies, Professions &amp; Appointments · Departamento de Lenguas Extranjeras, UNLPam</footer>
+</div>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.panel).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+
+  function toggleReveal(id){
+    document.getElementById(id).classList.toggle('show');
+  }
+  function norm(v){ return (v||'').trim().toLowerCase(); }
+
+  // ---------- SIMPLE PRESENT ----------
+  function checkPresent1(){
+    const answers = {sp1:["doesn't",'does not'], sp2:['do'], sp3:["don't",'do not'], sp4:['does']};
+    let correct=0, total=0;
+    for(const id in answers){
+      total++;
+      const el = document.getElementById(id);
+      const val = norm(el.value);
+      const ok = answers[id].includes(val);
+      el.classList.remove('field-ok','field-bad');
+      if(val){ el.classList.add(ok?'field-ok':'field-bad'); if(ok) correct++; }
+    }
+    const fb = document.getElementById('fbsp1');
+    fb.className = 'feedback ' + (correct===total?'ok':'warn') + ' show';
+    fb.innerHTML = correct+' / '+total+" correct.<br><strong>Correct answers:</strong> doesn't, Do, don't, Does";
+  }
+
+  function checkPresent2(){
+    const answers = {
+      sp5:['i usually study in the library'],
+      sp6:['she is always busy'],
+      sp7:['how often do you check emails'],
+      sp8:['they never have classes on sundays']
+    };
+    const display = {sp5:'I usually study in the library.', sp6:'She is always busy.', sp7:'How often do you check emails?', sp8:'They never have classes on Sundays.'};
+    let correct=0, total=0;
+    for(const id in answers){
+      total++;
+      const el = document.getElementById(id);
+      const val = norm(el.value).replace(/[?.!]/g,'');
+      const ok = answers[id].some(a=>val===a);
+      el.classList.remove('field-ok','field-bad');
+      if(val){ el.classList.add(ok?'field-ok':'field-bad'); if(ok) correct++; }
+    }
+    const fb = document.getElementById('fbsp2');
+    fb.className = 'feedback ' + (correct===total?'ok':'warn') + ' show';
+    let key = Object.keys(display).map(id=>display[id]).join(' ');
+    fb.innerHTML = correct+' / '+total+' correct.<br><strong>Correct answers:</strong> '+key;
+  }
+
+  // ---------- FREQUENCY (choose the adverb) ----------
+  const FREQ_WORDS = ["always","usually","often","sometimes","rarely","never"];
+  const FREQ_ANSWERS = {fr1:"always", fr2:"never", fr3:"sometimes", fr4:"usually"};
+  function populateFreqSelects(){
+    document.querySelectorAll('select.freqselect').forEach(sel=>{
+      sel.innerHTML = ['<option value="">Choose...</option>'].concat(FREQ_WORDS.map(w=>'<option value="'+w+'">'+w+'</option>')).join('');
+    });
+  }
+  function checkFrequency(){
+    let correct=0, total=0;
+    for(const id in FREQ_ANSWERS){
+      total++;
+      const el = document.getElementById(id);
+      const ok = el.value === FREQ_ANSWERS[id];
+      el.style.borderColor = el.value ? (ok?'var(--good)':'var(--bad)') : '';
+      if(ok) correct++;
+    }
+    const fb = document.getElementById('fbfr');
+    fb.className = 'feedback ' + (correct===total?'ok':'warn') + ' show';
+    fb.innerHTML = correct+' / '+total+' correct.<br><strong>Correct answers:</strong> always, never, sometimes, usually';
+  }
+
+  // ---------- REWRITE WITH ADVERB ----------
+  function checkRewrite(){
+    const answers = {
+      rw1:['i usually study in the library'],
+      rw2:['she is often tired'],
+      rw3:['they never have classes on saturdays']
+    };
+    const display = {rw1:'I usually study in the library.', rw2:'She is often tired.', rw3:'They never have classes on Saturdays.'};
+    let correct=0, total=0;
+    for(const id in answers){
+      total++;
+      const el = document.getElementById(id);
+      const val = norm(el.value).replace(/[.!]/g,'');
+      const ok = answers[id].some(a=>val===a);
+      el.classList.remove('field-ok','field-bad');
+      if(val){ el.classList.add(ok?'field-ok':'field-bad'); if(ok) correct++; }
+    }
+    const fb = document.getElementById('fbrw');
+    fb.className = 'feedback ' + (correct===total?'ok':'warn') + ' show';
+    let key = Object.keys(display).map(id=>display[id]).join(' ');
+    fb.innerHTML = correct+' / '+total+' correct.<br><strong>Correct answers:</strong> '+key;
+  }
+
+  // ---------- WARM-UP: ORDER YOUR DAY ----------
+  const WARMUP_ANSWERS = {wu1:'6', wu2:'1', wu3:'5', wu4:'8', wu5:'2', wu6:'4', wu7:'3', wu8:'7'};
+  function populateNumSelects(){
+    document.querySelectorAll('select.numselect').forEach(sel=>{
+      const opts = ['<option value="">#</option>'];
+      for(let i=1;i<=8;i++){ opts.push('<option value="'+i+'">'+i+'</option>'); }
+      sel.innerHTML = opts.join('');
+    });
+  }
+  function checkWarmup(){
+    let correct=0, total=0;
+    for(const id in WARMUP_ANSWERS){
+      total++;
+      const el = document.getElementById(id);
+      const ok = el.value === WARMUP_ANSWERS[id];
+      el.style.borderColor = el.value ? (ok?'var(--good)':'var(--bad)') : '';
+      if(ok) correct++;
+    }
+    const fb = document.getElementById('fbwu');
+    fb.className = 'feedback ' + (correct===total?'ok':'warn') + ' show';
+    fb.innerHTML = correct+' / '+total+" correct. There's more than one reasonable order — compare with a partner!";
+  }
+
+  // ---------- ROUTINE VOCABULARY ----------
+  const ROUTINE_WORDS = ["wake up","get up","take a shower","get dressed","have breakfast","go to class","have a break","study","go home","relax","go to bed"];
+  const ROUTINE_ANSWERS = {rv1:"wake up", rv2:"study", rv3:"have dinner", rv4:"relax"};
+  function populateRoutineSelects(){
+    document.querySelectorAll('select.routineselect').forEach(sel=>{
+      const words = ROUTINE_WORDS.slice();
+      if(sel.id==='rv3' && !words.includes('have dinner')) words.push('have dinner');
+      sel.innerHTML = ['<option value="">Choose...</option>'].concat(words.map(w=>'<option value="'+w+'">'+w+'</option>')).join('');
+    });
+  }
+  function checkRoutineVocab(){
+    let correct=0, total=0;
+    for(const id in ROUTINE_ANSWERS){
+      total++;
+      const el = document.getElementById(id);
+      const ok = el.value === ROUTINE_ANSWERS[id];
+      el.style.borderColor = el.value ? (ok?'var(--good)':'var(--bad)') : '';
+      if(ok) correct++;
+    }
+    const fb = document.getElementById('fbrv');
+    fb.className = 'feedback ' + (correct===total?'ok':'warn') + ' show';
+    fb.innerHTML = correct+' / '+total+' correct.<br><strong>Correct answers:</strong> wake up, study, have dinner, relax';
+  }
+
+  // ---------- DAILY ROUTINE READING ----------
+  function checkRoutineReading(){
+    const answers = {rr1:['6:30','6.30'], rr2:['classmates'], rr3:['no',"no, she doesn't","she doesn't work in the evenings"], rr4:['skip her nursing classes','skip class','skip classes']};
+    let correct=0, total=0;
+    for(const id in answers){
+      total++;
+      const el = document.getElementById(id);
+      const val = norm(el.value);
+      const ok = answers[id].some(a=>val.includes(a));
+      el.classList.remove('field-ok','field-bad');
+      if(val){ el.classList.add(ok?'field-ok':'field-bad'); if(ok) correct++; }
+    }
+    const fb = document.getElementById('fbrr');
+    fb.className = 'feedback ' + (correct===total?'ok':'warn') + ' show';
+    fb.innerHTML = correct+' / '+total+" correct.<br><strong>Correct answers:</strong> 6:30 · with her classmates · No, she doesn't · skip her Nursing classes";
+  }
+
+  // ---------- ID CARD ----------
+  function checkID(){
+    const answers = {id1:['ibáñez','ibanez'], id2:['03/11/2004','3/11/2004','november 3, 2004','3 november 2004'], id3:['systems engineering'], id4:['41.882.106','41882106']};
+    let correct=0, total=0;
+    for(const id in answers){
+      total++;
+      const el = document.getElementById(id);
+      const val = norm(el.value);
+      const ok = answers[id].includes(val);
+      el.classList.remove('field-ok','field-bad');
+      if(val){ el.classList.add(ok?'field-ok':'field-bad'); if(ok) correct++; }
+    }
+    const fb = document.getElementById('fbid');
+    fb.className = 'feedback ' + (correct===total?'ok':'warn') + ' show';
+    fb.innerHTML = correct+' / '+total+' correct.<br><strong>Correct answers:</strong> Ibáñez · 03/11/2004 · Systems Engineering · 41.882.106';
+  }
+
+  // ---------- CAREERS LISTENING (text-to-speech) ----------
+  const MONOLOGUES = {
+    ana: "Hi, I'm Ana. I'm a nurse and I work at the hospital in Santa Rosa. I usually work in the mornings, and I don't work at night, a different team does the night shift. I check patients and give them their medicine.",
+    martin: "Hello, my name's Martín. I'm a systems engineer. I usually work from home, and I only go to the office once a week, on Wednesdays. I write and test computer programs every day.",
+    valentina: "Hi there, I'm Valentina. I'm a veterinarian and I work at a clinic and sometimes on farms. I don't work on Saturdays, the clinic closes on weekends. I usually treat animals and talk to their owners."
+  };
+  let speechOK = ('speechSynthesis' in window);
+  function playMonologue(key){
+    if(!speechOK) return;
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(MONOLOGUES[key]);
+    utter.lang = 'en-US';
+    utter.rate = 0.95;
+    window.speechSynthesis.speak(utter);
+  }
+  function stopSpeaking(){
+    if(speechOK) window.speechSynthesis.cancel();
+  }
+
+  // ---------- AUTO-SAVE (browser storage) ----------
+  const STORAGE_KEY = 'unlpam_english_a1_unit2_studies_professions_appointments';
+  let storageOK = true;
+  try{
+    localStorage.setItem('__test__','1');
+    localStorage.removeItem('__test__');
+  }catch(e){ storageOK = false; }
+
+  function fieldLabel(el){
+    const row = el.closest('.item-row, div');
+    if(row && row.querySelector('.txt')) return row.querySelector('.txt').textContent.trim();
+    const prevLabel = el.parentElement?.querySelector('label');
+    if(prevLabel) return prevLabel.textContent.trim();
+    let sib = el.previousElementSibling;
+    while(sib){ if(sib.tagName==='LABEL') return sib.textContent.trim(); sib = sib.previousElementSibling; }
+    if(el.closest('li')) return el.closest('li').textContent.trim();
+    return el.id;
+  }
+
+  function collectAnswers(){
+    const data = {};
+    document.querySelectorAll('[data-save]').forEach(el=>{
+      data[el.id] = (el.type==='checkbox') ? el.checked : el.value;
+    });
+    return data;
+  }
+
+  function saveAnswers(){
+    if(!storageOK) return;
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(collectAnswers())); }catch(e){}
+  }
+
+  function loadAnswers(){
+    if(!storageOK) return;
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return;
+      const data = JSON.parse(raw);
+      document.querySelectorAll('[data-save]').forEach(el=>{
+        if(data[el.id] === undefined) return;
+        if(el.type==='checkbox'){ el.checked = data[el.id]; }
+        else { el.value = data[el.id]; }
+      });
+    }catch(e){}
+  }
+
+  function resetAnswers(){
+    if(!confirm('This will erase all your answers on this device. Continue?')) return;
+    document.querySelectorAll('[data-save]').forEach(el=>{
+      if(el.type==='checkbox'){ el.checked = false; }
+      else { el.value = ''; }
+    });
+    try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+    updateWordCount();
+  }
+
+  function studentSlug(){
+    const name = (document.getElementById('studentName')?.value || '').trim();
+    if(!name) return '';
+    return '-' + name.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+  }
+
+  function printGuide(){
+    try{ window.print(); }
+    catch(e){
+      alert("Printing is blocked in this preview. Open the guide outside Claude (the downloaded file, or the GitHub-published page) and print from there.");
+    }
+  }
+
+  function triggerDownload(filename, content, type){
+    try{
+      const blob = new Blob([content], {type: type});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      return true;
+    }catch(e){
+      copyFallback(content);
+      return false;
+    }
+  }
+
+  function copyFallback(content){
+    let copied = false;
+    try{
+      if(navigator.clipboard && window.isSecureContext){
+        navigator.clipboard.writeText(content);
+        copied = true;
+      }
+    }catch(e){}
+    if(!copied){
+      try{
+        const ta = document.createElement('textarea');
+        ta.value = content; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.focus(); ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        copied = true;
+      }catch(e){}
+    }
+    alert(
+      "The download didn't start — this preview blocks file downloads.\n\n" +
+      (copied ? "Your text was copied to the clipboard instead — paste it (Ctrl+V) into a document.\n\n" : "") +
+      "To download normally: open the guide outside Claude (the file already shared in this chat, or the version published on GitHub) and use the button there."
+    );
+  }
+
+  function downloadAnswers(){
+    const name = (document.getElementById('studentName')?.value || '').trim();
+    let out = 'STUDIES, PROFESSIONS & APPOINTMENTS — Unit 2 — English A1\n';
+    out += (name ? 'Student: ' + name + '\n' : '') + 'My answers\n' + '='.repeat(40) + '\n\n';
+    document.querySelectorAll('[data-save]').forEach(el=>{
+      if(el.id === 'studentName') return;
+      const label = fieldLabel(el);
+      const value = (el.type==='checkbox') ? (el.checked ? 'Yes' : 'No') : (el.value || '(not answered)');
+      out += '- ' + label + ': ' + value + '\n';
+    });
+    triggerDownload('my-answers-unit2' + studentSlug() + '.txt', out, 'text/plain');
+  }
+
+  function downloadGuide(){
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    triggerDownload('unit2-studies-professions-appointments' + studentSlug() + '.html', html, 'text/html');
+  }
+
+  document.addEventListener('input', e=>{ if(e.target.matches('[data-save]')) saveAnswers(); });
+  document.addEventListener('change', e=>{ if(e.target.matches('[data-save]')) saveAnswers(); });
+
+  window.addEventListener('DOMContentLoaded', ()=>{
+    populateNumSelects();
+    populateFreqSelects();
+    populateRoutineSelects();
+    loadAnswers();
+    const statusEl = document.getElementById('saveStatusText');
+    const led = document.getElementById('saveLed');
+    if(!storageOK){
+      statusEl.textContent = 'Auto-save is not available in this preview — use "Download my answers" before you leave.';
+      led.style.background = 'var(--bad)';
+    }
+    if(!speechOK){
+      const w = document.getElementById('ttsWarning');
+      if(w) w.style.display = 'block';
+    }
+  });
+</script>
+</body>
+</html>
