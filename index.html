@@ -348,7 +348,7 @@
   <div class="hero-inner">
     <span class="kicker">🎓 Unit 2 · English A1</span>
     <h1>Studies, Professions & Appointments</h1>
-    <p class="lead">Talk about your daily routine, describe your studies and career, and read personal documents — all in the Simple Present.</p>
+    <p class="lead">Talk about your daily routine, describe your studies and programme, and read personal documents — all in the Simple Present.</p>
   </div>
 </div>
 
@@ -357,7 +357,7 @@
     <button class="tab-btn active" data-panel="p-warmup"><span class="num">1</span> Warm-up</button>
     <button class="tab-btn" data-panel="p-present"><span class="num">2</span> Simple Present &amp; Frequency</button>
     <button class="tab-btn" data-panel="p-routine"><span class="num">3</span> Daily Routine</button>
-    <button class="tab-btn" data-panel="p-careers"><span class="num">4</span> Careers &amp; Listening</button>
+    <button class="tab-btn" data-panel="p-careers"><span class="num">4</span> Programme &amp; Listening</button>
     <button class="tab-btn" data-panel="p-ids"><span class="num">5</span> IDs &amp; Forms</button>
   </div>
   <div class="toolbar">
@@ -416,6 +416,39 @@
         <tr><td>Does she study English?</td><td>Yes, she does.</td><td>No, she doesn't.</td></tr>
       </table>
 
+      <h3>How does the verb change? (he / she / it)</h3>
+      <p class="sub">In the affirmative, he/she/it verbs change their spelling. Here's how:</p>
+      <div class="greet-grid">
+        <div class="greet-card">
+          <div class="gc-head"><div class="gc-ic">+s</div><h4>Most verbs</h4></div>
+          <ul>
+            <li>work → work<b>s</b></li>
+            <li>live → live<b>s</b></li>
+            <li>speak → speak<b>s</b></li>
+          </ul>
+        </div>
+        <div class="greet-card">
+          <div class="gc-head"><div class="gc-ic">+es</div><h4>Ending in -s, -ss, -sh, -ch, -x, -o</h4></div>
+          <ul>
+            <li>watch → watch<b>es</b></li>
+            <li>go → go<b>es</b></li>
+            <li>do → do<b>es</b></li>
+          </ul>
+        </div>
+        <div class="greet-card">
+          <div class="gc-head"><div class="gc-ic">y→ies</div><h4>Consonant + y</h4></div>
+          <ul>
+            <li>study → stud<b>ies</b></li>
+            <li>try → tr<b>ies</b></li>
+            <li><em>but:</em> play → play<b>s</b> (vowel + y)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="teacher-note">
+        <span class="eyebrow">Be careful!</span>
+        <p><strong>have → has</strong> is irregular: I/you/we/they <strong>have</strong>, but he/she/it <strong>has</strong>. (She has a laptop. He has classes on Tuesdays.)</p>
+      </div>
+
       <h3>Adverbs of frequency</h3>
       <p class="sub">Adverbs of frequency tell us <strong>how often</strong> something happens.</p>
       <table class="be-table">
@@ -453,7 +486,17 @@
       <h2>Practice</h2>
 
       <div class="ex-block">
-        <p><span class="ex-num">1</span><strong>Complete</strong> with do, does, don't or doesn't.</p>
+        <p><span class="ex-num">1</span><strong>Write</strong> the he/she/it form of each verb.</p>
+        <div class="item-row"><div class="txt">study →</div><input type="text" id="vf1" data-save></div>
+        <div class="item-row"><div class="txt">watch →</div><input type="text" id="vf2" data-save></div>
+        <div class="item-row"><div class="txt">have →</div><input type="text" id="vf3" data-save></div>
+        <div class="item-row"><div class="txt">go →</div><input type="text" id="vf4" data-save></div>
+        <div class="btn-row"><button class="btn" onclick="checkVerbForms()">Check</button></div>
+        <div class="feedback ok" id="fbvf"></div>
+      </div>
+
+      <div class="ex-block">
+        <p><span class="ex-num">2</span><strong>Complete</strong> with do, does, don't or doesn't.</p>
         <div class="item-row"><div class="txt">She ____ work on Saturdays.</div><input type="text" id="sp1" data-save></div>
         <div class="item-row"><div class="txt">____ you study in the mornings?</div><input type="text" id="sp2" data-save></div>
         <div class="item-row"><div class="txt">They ____ have classes on Fridays.</div><input type="text" id="sp3" data-save></div>
@@ -463,7 +506,7 @@
       </div>
 
       <div class="ex-block">
-        <p><span class="ex-num">2</span><strong>Order the words</strong> — remember where the adverb of frequency goes.</p>
+        <p><span class="ex-num">3</span><strong>Order the words</strong> — remember where the adverb of frequency goes.</p>
         <div class="item-row"><div class="txt">library / usually / the / I / study / in</div><input type="text" id="sp5" data-save></div>
         <div class="item-row"><div class="txt">busy / always / is / she</div><input type="text" id="sp6" data-save></div>
         <div class="item-row"><div class="txt">emails / how / you / check / often / do / ?</div><input type="text" id="sp7" data-save></div>
@@ -473,7 +516,7 @@
       </div>
 
       <div class="ex-block">
-        <p><span class="ex-num">3</span><strong>Choose</strong> the correct adverb for each clue.</p>
+        <p><span class="ex-num">4</span><strong>Choose</strong> the correct adverb for each clue.</p>
         <div class="item-row"><div class="txt">100% of the time: I ____ have breakfast.</div><select id="fr1" data-save class="freqselect"></select></div>
         <div class="item-row"><div class="txt">0% of the time: I ____ skip class.</div><select id="fr2" data-save class="freqselect"></select></div>
         <div class="item-row"><div class="txt">About half the time: I ____ study on weekends.</div><select id="fr3" data-save class="freqselect"></select></div>
@@ -483,7 +526,7 @@
       </div>
 
       <div class="ex-block">
-        <p><span class="ex-num">4</span><strong>Rewrite</strong> the sentence, adding the adverb in the correct position.</p>
+        <p><span class="ex-num">5</span><strong>Rewrite</strong> the sentence, adding the adverb in the correct position.</p>
         <div class="item-row"><div class="txt">I study in the library. (usually)</div><input type="text" id="rw1" data-save></div>
         <div class="item-row"><div class="txt">She is tired. (often)</div><input type="text" id="rw2" data-save></div>
         <div class="item-row"><div class="txt">They have classes on Saturdays. (never)</div><input type="text" id="rw3" data-save></div>
@@ -492,7 +535,7 @@
       </div>
 
       <div class="ex-block">
-        <p><span class="ex-num">5</span><strong>Answer</strong> about yourself.</p>
+        <p><span class="ex-num">6</span><strong>Answer</strong> about yourself.</p>
         <label class="q">How often do you attend classes?</label>
         <input type="text" id="pp1" data-save>
         <label class="q">Do you work and study at the same time?</label>
@@ -561,10 +604,10 @@
   <section class="panel" id="p-careers">
     <div class="card">
       <span class="eyebrow">Vocabulary</span>
-      <h2>Careers &amp; academic/work spaces</h2>
-      <p class="sub">Some of the degree programs at UNLPam and where people with these careers usually work.</p>
+      <h2>Programme &amp; academic/work spaces</h2>
+      <p class="sub">Some of the degree programmes at UNLPam and where people who study them usually work.</p>
       <table class="be-table">
-        <tr><th>Career</th><th>Usually works in / at...</th></tr>
+        <tr><th>Programme</th><th>Usually works in / at...</th></tr>
         <tr><td>Agricultural Engineer</td><td>the field, a farm</td></tr>
         <tr><td>Public Accountant</td><td>an office</td></tr>
         <tr><td>Lawyer</td><td>a courtroom, a law firm</td></tr>
@@ -620,7 +663,7 @@
         <div class="prompt-chips">
           <span class="chip">Where does a nurse usually work?</span>
           <span class="chip">Do you know anyone who works remotely?</span>
-          <span class="chip">What career would you like to have?</span>
+          <span class="chip">What programme would you like to study?</span>
           <span class="chip">Where does a vet usually work?</span>
         </div>
       </div>
@@ -644,7 +687,7 @@
             <div><b>Date of birth</b>03/11/2004</div>
             <div><b>Nationality</b>Argentinian</div>
             <div><b>ID number</b>41.882.106</div>
-            <div><b>Career</b>Systems Engineering</div>
+            <div><b>Programme</b>Systems Engineering</div>
             <div><b>Faculty</b>College of Engineering</div>
             <div><b>Enrolment year</b>2023</div>
           </div>
@@ -669,7 +712,7 @@
         <div><label>Name</label><input type="text" id="rf1" data-save></div>
         <div><label>Surname</label><input type="text" id="rf2" data-save></div>
         <div><label>ID number</label><input type="text" id="rf3" data-save></div>
-        <div><label>Career</label><input type="text" id="rf4" data-save></div>
+        <div><label>Programme</label><input type="text" id="rf4" data-save></div>
         <div><label>Year</label><input type="text" id="rf5" data-save></div>
         <div><label>Study mode</label><input type="text" id="rf6" data-save placeholder="in-person / remote"></div>
       </div>
@@ -696,6 +739,23 @@
   function norm(v){ return (v||'').trim().toLowerCase(); }
 
   // ---------- SIMPLE PRESENT ----------
+  // ---------- VERB FORMS (spelling rules) ----------
+  function checkVerbForms(){
+    const answers = {vf1:['studies'], vf2:['watches'], vf3:['has'], vf4:['goes']};
+    let correct=0, total=0;
+    for(const id in answers){
+      total++;
+      const el = document.getElementById(id);
+      const val = norm(el.value);
+      const ok = answers[id].includes(val);
+      el.classList.remove('field-ok','field-bad');
+      if(val){ el.classList.add(ok?'field-ok':'field-bad'); if(ok) correct++; }
+    }
+    const fb = document.getElementById('fbvf');
+    fb.className = 'feedback ' + (correct===total?'ok':'warn') + ' show';
+    fb.innerHTML = correct+' / '+total+' correct.<br><strong>Correct answers:</strong> studies, watches, has, goes';
+  }
+
   function checkPresent1(){
     const answers = {sp1:["doesn't",'does not'], sp2:['do'], sp3:["don't",'do not'], sp4:['does']};
     let correct=0, total=0;
@@ -861,7 +921,7 @@
     fb.innerHTML = correct+' / '+total+' correct.<br><strong>Correct answers:</strong> Ibáñez · 03/11/2004 · Systems Engineering · 41.882.106';
   }
 
-  // ---------- CAREERS LISTENING (text-to-speech) ----------
+  // ---------- PROGRAMME LISTENING (text-to-speech) ----------
   const MONOLOGUES = {
     ana: "Hi, I'm Ana. I'm a nurse and I work at the hospital in Santa Rosa. I usually work in the mornings, and I don't work at night, a different team does the night shift. I check patients and give them their medicine.",
     martin: "Hello, my name's Martín. I'm a systems engineer. I usually work from home, and I only go to the office once a week, on Wednesdays. I write and test computer programs every day.",
